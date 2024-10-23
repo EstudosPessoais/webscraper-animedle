@@ -8,10 +8,9 @@ response = requests.get(url)
 soup = BeautifulSoup(response.content, "html.parser")
 
 animes = []
-for item in soup.select(".ranking-list .detail .di-ib a.hoverinfo_trigger"):
-    title = item.text.strip()
-    url = item.get("href")
-    animes.append((title, url))
+for item in soup.select(".ranking-list .detail"):
+    title = item.select_one("div.di-ib a.hoverinfo_trigger").text
+    link = item.select_one("div.di-ib a.hoverinfo_trigger").get("href")
+    animes.append((title, link))
 
-for anime in animes:
-    print(f"Title: {anime[0]}, URL: {anime[1]}")
+print(animes)
