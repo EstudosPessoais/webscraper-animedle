@@ -13,4 +13,5 @@ for item in soup.select(".ranking-list .detail .di-ib a.hoverinfo_trigger"):
     url = item.get("href")
     animes.append((title, url))
 
-print(animes)
+for anime in animes:
+    print(f"Title: {anime[0]}, URL: {anime[1]}")
